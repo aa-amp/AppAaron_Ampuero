@@ -7,7 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import com.example.appaaron_ampuero.ui.theme.AppAaron_AmpueroTheme
-import ui.screens.HomeScreen
+import ui.navigation.AppNavigation
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,12 +16,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppAaron_AmpueroTheme {
-                Surface(
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    HomeScreen()
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    AppNavigation()
+                }
                 }
             }
         }
     }
-}
+

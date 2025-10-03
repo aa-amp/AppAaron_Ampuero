@@ -10,15 +10,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.appaaron_ampuero.R
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import navigation.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onNavigate: (Screen) -> Unit) {
     Scaffold(
         topBar = {
             TopAppBar( title = { Text("AppAaron_Ampuero", color = MaterialTheme.colorScheme.secondary)
@@ -35,22 +32,23 @@ fun HomeScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Bienvenido",
+                text = "Bienvenido a la App de Bazar del Barrio!",
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.secondary
             )
             Button(
-                onClick = {/*accion futura*/ },
+                onClick = {onNavigate(Screen.Product) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor =
                         MaterialTheme.colorScheme.secondary
                 )
             ) {
                 Text(
-                    "Presioname",
+                    "Ir a Productos",
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
+            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo App",
@@ -60,19 +58,24 @@ fun HomeScreen() {
                 contentScale = ContentScale.Fit
             )
             Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
-            var text by remember { mutableStateOf("") }
-            TextField(
-                value = text,
-                onValueChange = { text = it },
-                label = { Text("Texto de relleno") },
-                modifier = Modifier.fillMaxWidth(),
-                colors = TextFieldDefaults.colors(
-                    focusedContainerColor = MaterialTheme.colorScheme.primary,
-                    unfocusedContainerColor = MaterialTheme.colorScheme.primaryContainer,
-                    focusedTextColor = MaterialTheme.colorScheme.surface,
-                    unfocusedTextColor = MaterialTheme.colorScheme.surface
+
+            Button(
+                onClick = {onNavigate(Screen.Login)},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary
                 )
-            )
+            ) {
+                Text("Login", color = MaterialTheme.colorScheme.onPrimary)
+            }
+
+            Button(
+                onClick = {onNavigate(Screen.Registro)},
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.secondary
+                )
+            ){
+                Text("Registro", color = MaterialTheme.colorScheme.onPrimary)
+            }
         }
     }
 }
