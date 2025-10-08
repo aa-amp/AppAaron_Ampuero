@@ -5,14 +5,14 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import data.AppPreferences
+import data.AppPreferencias
 import navigation.Screen
 import ui.utils.UsuarioErrores
 import ui.utils.UsuarioUiState
 
 class UsuarioViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val prefs = AppPreferences(application)
+    private val prefs = AppPreferencias(application)
 
     private val _estado = MutableStateFlow(UsuarioUiState())
     private val correoDueno = "dueno@duocuc.cl"

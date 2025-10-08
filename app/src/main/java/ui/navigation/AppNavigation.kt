@@ -66,7 +66,7 @@ fun AppNavigation() {
             GestionarProductosScreen{screen -> navController.navigate(screen.route)}
         }
         composable(Screen.PerfilDueno.route) {
-            PerfilDuenoScreen(viewModel = duenoViewModel)
+            PerfilDuenoScreen(viewModel = duenoViewModel, onNavigate = {route -> navController.navigate(route.route)})
         }
     }
 }

@@ -2,17 +2,16 @@ package viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import com.example.appaaron_ampuero.R
-import data.AppPreferences
+import data.AppPreferencias
 import kotlinx.coroutines.launch
 import ui.screens.Product
 
 class ProductoViewModel (application: Application) : AndroidViewModel(application) {
-    private val prefs = AppPreferences(application)
+    private val prefs = AppPreferencias(application)
 
     private val _productos = MutableStateFlow(
         listOf(

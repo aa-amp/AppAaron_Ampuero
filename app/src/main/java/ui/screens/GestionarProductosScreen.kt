@@ -16,7 +16,7 @@ fun GestionarProductosScreen(onNavigate: (Screen) -> Unit) {
     Scaffold(
         topBar = {
             CustomTopBar(
-                titulo = "Agregar Producto",
+                titulo = "Editar o Eliminar Productos",
                 colorFondo = Color.Gray
             )
         },
