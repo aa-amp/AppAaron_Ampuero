@@ -1,5 +1,7 @@
 package navigation
 
+import navigation.Screen
+
 sealed class NavigationEvent {
     data class NavigateTo(
         val route: Screen,

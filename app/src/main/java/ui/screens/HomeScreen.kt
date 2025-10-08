@@ -11,15 +11,18 @@ import androidx.compose.ui.unit.dp
 import com.example.appaaron_ampuero.R
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import navigation.Screen
+import ui.components.CustomTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(onNavigate: (Screen) -> Unit) {
     Scaffold(
         topBar = {
-            TopAppBar( title = { Text("AppAaron_Ampuero", color = MaterialTheme.colorScheme.secondary)
-            }
+            CustomTopBar(
+                titulo = "App.AaronAmpuero",
+                colorFondo = Color.Gray
             )
         }
     ) { innerPadding ->
@@ -48,7 +51,7 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
-            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
+            HorizontalDivider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo App",
@@ -57,7 +60,7 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
-            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
+            HorizontalDivider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
 
             Button(
                 onClick = {onNavigate(Screen.Login)},

@@ -15,22 +15,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
-import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.IconButton
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import com.example.appaaron_ampuero.R
 import kotlinx.coroutines.launch
+import androidx.lifecycle.viewmodel.compose.viewModel
+import ui.components.CustomBottomBar
+import ui.components.CustomTopBar
+import viewmodel.ProductoViewModel
 
 
-@Composable
-fun MyBottomBar() {
-    BottomAppBar {
-        IconButton(onClick = { /* Acción */ }) {
-            Icon(Icons.Filled.Home, contentDescription = "Inicio")
-        }
-    }
-}
+
 data class Product(
     val nombre: String,
     val imageRes: Int,
@@ -38,40 +33,28 @@ data class Product(
 )
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProductScreen(onNavigate: (Screen) -> Unit) {
-    var cartCount by remember { mutableStateOf(0) }
+fun ProductScreen(onNavigate: (Screen) -> Unit, viewModel: ProductoViewModel = viewModel()) {
+    val productos by viewModel.productos.collectAsState()
+    val carrito by viewModel.carrito.collectAsState()
+    val cartCount = carrito.size
 
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    val productos = listOf(
-        Product("Fideos Rigati 400g", R.drawable.product1, "$1.000"),
-        Product("Alfi 45g", R.drawable.product2, "$700" ),
-        Product("Tableta Bon o Bon 270g", R.drawable.product3, "$3.500"),
-        Product("Cheetos 40g", R.drawable.product4, "$1.000"),
-        Product("Chocman 33g", R.drawable.product5, "$300"),
-        Product("Lays 110g", R.drawable.product6, "$2.000"),
-        Product("Golpe 27g", R.drawable.product7, "$500"),
-        Product("Coca Cola Zero 1l", R.drawable.product8, "$1.100")
-    )
-
-    Scaffold(
+    Scaffold(topBar = {
+        CustomTopBar(
+            titulo = "Productos",
+            colorFondo = Color.Gray
+        )
+    },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         bottomBar = {
-            NavigationBar {
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { onNavigate(Screen.Home) },
-                    label = { Text("Inicio") },
-                    icon = { Icon(Icons.Default.Home, contentDescription = null) }
-                )
-                NavigationBarItem(
-                    selected = false,
-                    onClick = { onNavigate(Screen.Cart) },
-                    label = { Text("Carrito ($cartCount)") },
-                    icon = { Icon(Icons.Default.ShoppingCart, contentDescription = null) }
-                )
-            }
+            CustomBottomBar(
+                cartCount = cartCount,
+                onNavigate = onNavigate,
+                showHome = true,
+                showCart = true
+            )
         }
     ) { innerPadding ->
         LazyVerticalGrid(
@@ -105,13 +88,12 @@ fun ProductScreen(onNavigate: (Screen) -> Unit) {
                         Text(producto.precio, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.secondary)
                         Spacer(modifier = Modifier.height(8.dp))
                         Button(
-                            onClick = { cartCount++
-                                      scope.launch {
-                                          snackbarHostState.showSnackbar(
-                                              message = "${producto.nombre} agregado al carrito!"
-                                )
-                            }
-                      },
+                            onClick = {
+                                viewModel.agregarAlCarrito(producto)
+                                scope.launch {
+                                    snackbarHostState.showSnackbar("${producto.nombre} agregado al carrito!")
+                                }
+                            },
                             modifier = Modifier.fillMaxWidth()
                         ) {
                             Text("Comprar")

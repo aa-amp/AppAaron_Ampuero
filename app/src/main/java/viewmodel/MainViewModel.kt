@@ -11,7 +11,6 @@ import navigation.NavigationEvent
 import navigation.Screen
 
 class MainViewModel : ViewModel() {
-class MainViewModel : ViewModel() {
 
     private val _navigationEvents = MutableSharedFlow<NavigationEvent>()
 
@@ -36,4 +35,3 @@ class MainViewModel : ViewModel() {
     }
 }
 
-}

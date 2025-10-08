@@ -5,19 +5,36 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.appaaron_ampuero.R
 import navigation.Screen
+import ui.components.CustomBottomBar
+import ui.components.CustomTopBar
+import viewmodel.UsuarioViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(onNavigate: (Screen) -> Unit) {
+fun LoginScreen(
+    onNavigate: (Screen) -> Unit,
+    viewModel: UsuarioViewModel
+) {
+    val estado by viewModel.estado.collectAsState()
+
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("Login", color = MaterialTheme.colorScheme.secondary) }
+                CustomTopBar(
+                    titulo = "Login",
+                    colorFondo = Color.Gray
+                )
+        },
+        bottomBar = {
+            CustomBottomBar(
+                onNavigate = onNavigate,
+                showHome = true
             )
         }
     ) { innerPadding ->
@@ -26,12 +43,8 @@ fun LoginScreen(onNavigate: (Screen) -> Unit) {
                 .padding(innerPadding)
                 .fillMaxSize()
                 .padding(16.dp),
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            var username by remember { mutableStateOf("") }
-            var password by remember { mutableStateOf("") }
-            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
-
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo App",
@@ -40,28 +53,44 @@ fun LoginScreen(onNavigate: (Screen) -> Unit) {
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
-            Divider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
 
+            // Campo correo
             OutlinedTextField(
-                value = username,
-                onValueChange = { username = it },
-                label = { Text("Usuario") },
+                value = estado.correo,
+                onValueChange = viewModel::onCorreoChange,
+                label = { Text("Correo electrónico") },
+                isError = estado.errores.correo != null,
+                supportingText = {
+                    estado.errores.correo?.let {
+                        Text(it, color = MaterialTheme.colorScheme.error)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(16.dp))
-
+            // Campo clave
             OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
+                value = estado.clave,
+                onValueChange = viewModel::onClaveChange,
                 label = { Text("Contraseña") },
+                visualTransformation = PasswordVisualTransformation(),
+                isError = estado.errores.clave != null,
+                supportingText = {
+                    estado.errores.clave?.let {
+                        Text(it, color = MaterialTheme.colorScheme.error)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
-
+            // Botón de ingreso
             Button(
-                onClick = { onNavigate(Screen.Product) },
+                onClick = {
+                    val destino = viewModel.loginTipoUsuario()
+                    if (destino != null) {
+                        onNavigate(destino)
+                    }
+                },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text("Ingresar")
