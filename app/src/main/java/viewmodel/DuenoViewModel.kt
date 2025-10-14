@@ -3,10 +3,9 @@ package viewmodel
 import android.app.Application
 import android.net.Uri
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
 import data.AppPreferencias
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -41,6 +40,14 @@ class DuenoViewModel(application: Application) : AndroidViewModel(application) {
                     null
                 }
             }
+        }
+    }
+
+    fun fueImagenCopiada(): Flow<Boolean> = prefs.fueImagenCopiada()
+
+    fun marcarImagenCopiada() {
+        viewModelScope.launch {
+            prefs.marcarImagenCopiada()
         }
     }
 }

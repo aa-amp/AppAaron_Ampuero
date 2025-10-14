@@ -6,10 +6,7 @@ import android.os.Environment
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,16 +15,20 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.core.content.FileProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.flow.collectLatest
 import navigation.Screen
 import ui.componentes.ImagenCostumizable
 import ui.components.CustomBottomBar
 import ui.components.CustomTopBar
+import ui.utils.copiarImagenADispositivo
 import viewmodel.DuenoViewModel
 import java.io.File
 
 @Composable
-fun PerfilDuenoScreen(viewModel: DuenoViewModel = viewModel(),
-                      onNavigate: (Screen) -> Unit) {
+fun PerfilDuenoScreen(
+    viewModel: DuenoViewModel = viewModel(),
+    onNavigate: (Screen) -> Unit
+) {
     val imagenUri by viewModel.imagenUri.collectAsState()
     val correo by viewModel.correo.collectAsState()
     val nombre by viewModel.nombre.collectAsState()
@@ -41,13 +42,7 @@ fun PerfilDuenoScreen(viewModel: DuenoViewModel = viewModel(),
         contract = ActivityResultContracts.GetContent()
     ) { uri: Uri? ->
         uri?.let {
-            val inputStream = context.contentResolver.openInputStream(it)
-            val file = File(context.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "perfil.png")
-            inputStream?.use { input ->
-                file.outputStream().use { output -> input.copyTo(output) }
-            }
-            val fileUri = Uri.fromFile(file)
-            viewModel.setImagen(fileUri)
+            viewModel.setImagen(it)
         }
     }
 
@@ -66,6 +61,16 @@ fun PerfilDuenoScreen(viewModel: DuenoViewModel = viewModel(),
     ) { granted ->
         if (granted) {
             tempUri?.let { uri -> cameraLauncher.launch(uri) }
+        }
+    }
+
+    // Copiar imagen automáticamente una sola vez
+    LaunchedEffect(Unit) {
+        viewModel.fueImagenCopiada().collectLatest { yaCopiada ->
+            if (!yaCopiada) {
+                copiarImagenADispositivo(context)
+                viewModel.marcarImagenCopiada()
+            }
         }
     }
 
@@ -108,7 +113,7 @@ fun PerfilDuenoScreen(viewModel: DuenoViewModel = viewModel(),
             Button(onClick = {
                 val file = File(
                     context.getExternalFilesDir(Environment.DIRECTORY_PICTURES),
-                    "dueno.png"
+                    "dueno_${System.currentTimeMillis()}.jpg"
                 )
                 tempUri = FileProvider.getUriForFile(
                     context,
