@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.appaaron_ampuero.ui.screens.ProductScreen
 import navigation.Screen
 import ui.screens.*
 import viewmodel.DuenoViewModel

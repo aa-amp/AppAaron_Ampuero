@@ -1,4 +1,4 @@
-package ui.screens
+package com.example.appaaron_ampuero.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -14,21 +14,16 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import navigation.Screen
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import kotlinx.coroutines.launch
 import androidx.lifecycle.viewmodel.compose.viewModel
+import navigation.Screen
 import ui.components.CustomBottomBar
 import ui.components.CustomTopBar
 import viewmodel.ProductoViewModel
-data class Product(
-    val nombre: String,
-    val imageRes: Int,
-    val precio: String
-)
+import model.Producto
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProductScreen(onNavigate: (Screen) -> Unit, viewModel: ProductoViewModel = viewModel()) {
@@ -76,7 +71,7 @@ fun ProductScreen(onNavigate: (Screen) -> Unit, viewModel: ProductoViewModel = v
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Image(
-                                painter = painterResource(id = producto.imageRes),
+                                painter = painterResource(id = producto.imagenRes),
                                 contentDescription = producto.nombre,
                                 modifier = Modifier
                                     .height(120.dp)
