@@ -65,6 +65,9 @@ fun DuenoScreen(
             ) {
                 Text("Ver perfil del dueño")
             }
+            Button(onClick = { onNavigate(Screen.UsuarioDatos)}) {
+                Text("Ver Lista de Usuarios")
+            }
         }
     }
 }

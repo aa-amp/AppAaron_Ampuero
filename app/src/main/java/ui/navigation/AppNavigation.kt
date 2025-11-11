@@ -12,6 +12,7 @@ import viewmodel.DuenoViewModel
 import viewmodel.ProductoViewModel
 import viewmodel.UsuarioViewModel
 
+
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
@@ -68,6 +69,10 @@ fun AppNavigation() {
         }
         composable(Screen.PerfilDueno.route) {
             PerfilDuenoScreen(viewModel = duenoViewModel, onNavigate = {route -> navController.navigate(route.route)})
+        }
+
+        composable(Screen.UsuarioDatos.route) {
+            UsuariosDatosScreen()
         }
     }
 }
