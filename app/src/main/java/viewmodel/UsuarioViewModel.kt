@@ -9,6 +9,9 @@ import data.AppPreferencias
 import navigation.Screen
 import ui.utils.UsuarioErrores
 import ui.utils.UsuarioUiState
+import kotlinx.coroutines.launch
+import repository.UsuariosRepository
+import model.Usuarios
 
 class UsuarioViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -17,6 +20,8 @@ class UsuarioViewModel(application: Application) : AndroidViewModel(application)
     private val _estado = MutableStateFlow(UsuarioUiState())
     private val correoDueno = "dueno@duocuc.cl"
     private val claveDueno = "123456"
+
+    private val usuariosRepo = repository.UsuariosRepository()
 
     val estado: StateFlow<UsuarioUiState> = _estado
 
@@ -116,9 +121,28 @@ class UsuarioViewModel(application: Application) : AndroidViewModel(application)
             prefs.guardarSesion("")
         }
     }
+
+    fun registrarUsuario(
+        onResult: (creado: Usuarios?, mensaje: String?) -> Unit = { _, _ -> },
+        notifyUsuariosList: (() -> Unit)? = null
+    ) {
+        val s = _estado.value
+        val nuevo = Usuarios(
+            id = 0,
+            name = s.nombre,
+            username = s.nombre.replace("\\s+".toRegex(), "").lowercase(),
+            email = s.correo
+        )
+
+        viewModelScope.launch {
+            try {
+                val creado = usuariosRepo.crearUsuario(nuevo)
+                onResult(creado, null)
+                notifyUsuariosList?.invoke()
+            } catch (e: Exception) {
+                onResult(null, e.localizedMessage ?: "Error al crear usuario")
+            }
+        }
+    }
+
 }
-
-
-
-
-

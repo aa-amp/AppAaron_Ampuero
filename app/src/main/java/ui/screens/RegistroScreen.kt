@@ -1,17 +1,21 @@
 package ui.screens
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.launch
+import model.Usuarios
 import navigation.Screen
 import ui.components.CustomBottomBar
 import ui.components.CustomTopBar
 import viewmodel.UsuarioViewModel
+import viewmodel.UsuariosDatosViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -20,6 +24,11 @@ fun RegistroScreen(
     viewModel: UsuarioViewModel
 ) {
     val estado by viewModel.estado.collectAsState()
+    val snackbarHostState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    // ViewModel de la lista. Ajusta la inyección si usas Hilt o un factory.
+    val usuariosViewModel: UsuariosDatosViewModel = viewModel()
 
     Scaffold(
         topBar = {
@@ -33,7 +42,8 @@ fun RegistroScreen(
                 onNavigate = onNavigate,
                 showHome = true
             )
-        }
+        },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { innerPadding ->
         Column(
             modifier = Modifier
@@ -109,16 +119,32 @@ fun RegistroScreen(
                 Text(text = "Acepto los términos y condiciones")
             }
 
+            Spacer(modifier = Modifier.height(8.dp))
+
             // Botón: enviar
             Button(
                 onClick = {
-                    if (viewModel.validarFormulario()) {
-                        onNavigate(Screen.Resumen)
+                    if (!viewModel.validarFormulario()) {
+                        scope.launch {
+                            snackbarHostState.showSnackbar("Corrige los errores del formulario")
+                        }
+                        return@Button
                     }
+                    viewModel.registrarUsuario(onResult = { creado, msg ->
+                        scope.launch {
+                            if (creado != null) {
+                                usuariosViewModel.insertLocal(creado)
+                                onNavigate(Screen.Resumen)
+                            } else {
+                                snackbarHostState.showSnackbar(msg ?: "Error al registrar usuario")
+                            }
+                        }
+                    }, notifyUsuariosList = null)
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Text(text = "Registrar")
             }
         }
-    }}
+    }
+}
