@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import navigation.Screen
-import ui.components.CustomBottomBar
-import ui.components.CustomTopBar
+import ui.componentes.CustomBottomBar
+import ui.componentes.CustomTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

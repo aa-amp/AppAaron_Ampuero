@@ -18,8 +18,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.collectLatest
 import navigation.Screen
 import ui.componentes.ImagenCostumizable
-import ui.components.CustomBottomBar
-import ui.components.CustomTopBar
+import ui.componentes.CustomBottomBar
+import ui.componentes.CustomTopBar
 import ui.utils.copiarImagenADispositivo
 import viewmodel.DuenoViewModel
 import java.io.File

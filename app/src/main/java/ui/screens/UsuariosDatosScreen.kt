@@ -9,7 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
-import ui.components.CustomTopBar
+import ui.componentes.CustomTopBar
 import viewmodel.UsuariosDatosViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

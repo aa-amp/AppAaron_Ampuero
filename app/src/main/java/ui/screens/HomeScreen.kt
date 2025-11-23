@@ -13,7 +13,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
 import navigation.Screen
-import ui.components.CustomTopBar
+import ui.componentes.CustomTopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

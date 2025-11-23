@@ -12,8 +12,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
 import model.Usuarios
 import navigation.Screen
-import ui.components.CustomBottomBar
-import ui.components.CustomTopBar
+import ui.componentes.CustomBottomBar
+import ui.componentes.CustomTopBar
 import viewmodel.UsuarioViewModel
 import viewmodel.UsuariosDatosViewModel
 
@@ -27,7 +27,6 @@ fun RegistroScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    // ViewModel de la lista. Ajusta la inyección si usas Hilt o un factory.
     val usuariosViewModel: UsuariosDatosViewModel = viewModel()
 
     Scaffold(

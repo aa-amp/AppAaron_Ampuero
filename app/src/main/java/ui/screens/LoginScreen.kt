@@ -12,8 +12,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.example.appaaron_ampuero.R
 import navigation.Screen
-import ui.components.CustomBottomBar
-import ui.components.CustomTopBar
+import ui.componentes.CustomBottomBar
+import ui.componentes.CustomTopBar
 import viewmodel.UsuarioViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

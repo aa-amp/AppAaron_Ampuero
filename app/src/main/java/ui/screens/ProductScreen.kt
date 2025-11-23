@@ -1,4 +1,4 @@
-package com.example.appaaron_ampuero.ui.screens
+package ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
@@ -19,8 +19,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import navigation.Screen
-import ui.components.CustomBottomBar
-import ui.components.CustomTopBar
+import ui.componentes.CustomBottomBar
+import ui.componentes.CustomTopBar
 import viewmodel.ProductoViewModel
 import model.Producto
 
