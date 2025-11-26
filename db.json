@@ -1,0 +1,95 @@
+{
+  "users": [
+    {
+      "email": "Aa@duocuc.cl",
+      "id": "1",
+      "name": "AARON",
+      "username": "AARON"
+    },
+    {
+      "email": "d.cares@duocuc.cl",
+      "id": "2",
+      "name": "diego.",
+      "username": "dcares"
+    },
+    {
+      "id": "3",
+      "email": "adsdas@duocuc.cl",
+      "name": "das",
+      "username": "das"
+    },
+    {
+      "id": "5",
+      "email": "gel.@duocuc.cl",
+      "name": "miguel",
+      "username": "mi"
+    }
+  ],
+  "posts": [
+    {
+      "userId": 1,
+      "id": "1",
+      "title": "Fideos Rigati 400g API",
+      "body": "1000",
+      "imageName": "product1"
+    },
+    {
+      "userId": 1,
+      "id": "2",
+      "title": "Alfi 45g API",
+      "body": "700",
+      "imageName": "product2"
+    },
+    {
+      "userId": 1,
+      "id": "3",
+      "title": "Tableta BonoBon 270g API",
+      "body": "3500",
+      "imageName": "product3"
+    },
+    {
+      "userId": 1,
+      "id": "4",
+      "title": "Cheetos 40g API",
+      "body": "1000",
+      "imageName": "product4"
+    },
+    {
+      "userId": 1,
+      "id": "5",
+      "title": "Chocman 33g API",
+      "body": "300",
+      "imageName": "product5"
+    },
+    {
+      "userId": 1,
+      "id": "6",
+      "title": "Lays 110g API",
+      "body": "2000",
+      "imageName": "product6"
+    },
+    {
+      "userId": 1,
+      "id": "7",
+      "title": "Golpe 27g API",
+      "body": "500",
+      "imageName": "product7"
+    },
+    {
+      "userId": 1,
+      "id": "8",
+      "title": "Coca Cola Zero 1Litrelio API",
+      "body": "1100",
+      "imageName": null,
+      "imageUrl": null
+    },
+    {
+      "id": "66",
+      "body": "321",
+      "imageName": null,
+      "imageUrl": "content://media/picker_get_content/0/com.android.providers.media.photopicker/media/34",
+      "title": "Productofals",
+      "userId": 1
+    }
+  ]
+}

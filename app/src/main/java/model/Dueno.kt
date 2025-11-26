@@ -1,8 +1,9 @@
 package model
 
-data class Dueno(
-    val nombre: String = "Aarón Ampuero",
-    val correo: String = "dueno@duocuc.cl",
-    val rol: String = "Administrador",
-    val imagenUri: String? = null
+data class DuenoModel(
+    val id: Int = 0,
+    val nombre: String = "",
+    val correo: String = "",
+    val telefono: String = "",
+    val direccion: String = ""
 )

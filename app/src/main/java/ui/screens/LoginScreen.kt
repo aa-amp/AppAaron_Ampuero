@@ -54,7 +54,6 @@ fun LoginScreen(
                 contentScale = ContentScale.Fit
             )
 
-            // Campo correo
             OutlinedTextField(
                 value = estado.correo,
                 onValueChange = viewModel::onCorreoChange,
@@ -68,7 +67,6 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Campo clave
             OutlinedTextField(
                 value = estado.clave,
                 onValueChange = viewModel::onClaveChange,
@@ -83,7 +81,6 @@ fun LoginScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Botón de ingreso
             Button(
                 onClick = {
                     val destino = viewModel.loginTipoUsuario()
