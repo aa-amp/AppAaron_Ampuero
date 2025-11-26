@@ -101,7 +101,7 @@ fun ProductScreen(
                                     onAddToCart = {
                                         val productoLocal = Producto(
                                             nombre = producto.nombre,
-                                            imagenRes = if (producto.imagenRes != 0) producto.imagenRes else com.example.appaaron_ampuero.R.drawable.default_product,
+                                            imagenRes = if (producto.imagenRes != 0) producto.imagenRes else com.example.appaaron_ampuero.R.drawable.`product_placeholder`,
                                             precio = "$${producto.precio}"
                                         )
                                         viewModel.agregarAlCarrito(productoLocal)
@@ -203,7 +203,7 @@ fun ProductoApiItem(producto: ProductoModel, onAddToCart: () -> Unit) {
             modifier = Modifier.padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            val imageRes = if (producto.imagenRes != 0) producto.imagenRes else com.example.appaaron_ampuero.R.drawable.default_product
+            val imageRes = if (producto.imagenRes != 0) producto.imagenRes else com.example.appaaron_ampuero.R.drawable.`product_placeholder`
             Image(
                 painter = painterResource(id = imageRes),
                 contentDescription = producto.nombre,
