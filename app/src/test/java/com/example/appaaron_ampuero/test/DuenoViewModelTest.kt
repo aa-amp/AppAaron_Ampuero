@@ -20,7 +20,7 @@ class DuenoViewModelTest : StringSpec({
     beforeTest { Dispatchers.setMain(dispatcher) }
     afterTest { Dispatchers.resetMain() }
 
-    "nombre inicial del dueño es Aarón Ampuero" {
+    "nombre del dueño es Aarón Ampuero" {
         val fakeApp = mockk<Application>(relaxed = true)
         val vm = DuenoViewModel(application = fakeApp)
 

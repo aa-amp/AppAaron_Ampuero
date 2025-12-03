@@ -39,11 +39,11 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
                 style = MaterialTheme.typography.headlineMedium,
                 color = MaterialTheme.colorScheme.secondary
             )
+
             Button(
-                onClick = {onNavigate(Screen.Product) },
+                onClick = { onNavigate(Screen.Product) },
                 colors = ButtonDefaults.buttonColors(
-                    containerColor =
-                        MaterialTheme.colorScheme.secondary
+                    containerColor = MaterialTheme.colorScheme.secondary
                 )
             ) {
                 Text(
@@ -51,7 +51,9 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
                     color = MaterialTheme.colorScheme.onPrimary
                 )
             }
+
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
+
             Image(
                 painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo App",
@@ -60,10 +62,11 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
                     .height(150.dp),
                 contentScale = ContentScale.Fit
             )
+
             HorizontalDivider(color = MaterialTheme.colorScheme.onSurface, thickness = 1.dp)
 
             Button(
-                onClick = {onNavigate(Screen.Login)},
+                onClick = { onNavigate(Screen.Login) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.secondary
                 )
@@ -72,12 +75,39 @@ fun HomeScreen(onNavigate: (Screen) -> Unit) {
             }
 
             Button(
-                onClick = {onNavigate(Screen.Registro)},
+                onClick = { onNavigate(Screen.Registro) },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.secondary
                 )
-            ){
+            ) {
                 Text("Registro", color = MaterialTheme.colorScheme.onPrimary)
+            }
+
+            Spacer(modifier = Modifier.height(24.dp))
+
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .padding(16.dp)
+                        .fillMaxWidth(),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.sol),
+                        contentDescription = "Icono sol",
+                        modifier = Modifier.size(48.dp)
+                    )
+
+                    Column {
+                        Text("Clima en Santiago", style = MaterialTheme.typography.titleMedium)
+                        Text("Temperatura: 22°C")
+                        Text("Viento: 10 km/h")
+                    }
+                }
             }
         }
     }
