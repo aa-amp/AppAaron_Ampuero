@@ -9,10 +9,6 @@ Características
 - Consumo de API externa de clima con Open-Meteo.
 - Interfaz desarrollada con Jetpack Compose.
 - Compatible con emulador Pixel 9a (probado en desarrollo).
-📸 Capturas de pantalla
-|  |  |  | 
-|  |  |  | 
-
 
 Tecnologías Utilizadas
 - Kotlin como lenguaje principal.
@@ -24,7 +20,7 @@ Tecnologías Utilizadas
 - JUnit para pruebas unitarias.
 Instalación
 - Clona el repositorio:
-git clone https://github.com/tu-usuario/AppAaron_Ampuero.git
+git clone https://github.com/aa-amp/AppAaron_Ampuero.git
 - Abre el proyecto en Android Studio.
 - Inicia el backend local con:
 npx json-server --watch db.json --port 3001
