@@ -1,7 +1,8 @@
-#AppAaron_Ampuero
+# AppAaron_Ampuero
+
 AppAaron_Ampuero es una aplicación Android diseñada para la gestión de un bazar. Permite administrar productos, usuarios y un carrito de compras, integrándose con un backend local que facilita la persistencia y sincronización
 de datos durante el desarrollo. Además, incorpora el consumo de una API externa de clima (Open-Meteo) para mostrar información en la pantalla de inicio.
-Características
+## Características
 - Gestión de productos (listado, creación, edición, eliminación).
 - Manejo de carrito de compras local.
 - Administración de usuarios.
@@ -10,7 +11,7 @@ Características
 - Interfaz desarrollada con Jetpack Compose.
 - Compatible con emulador Pixel 9a (probado en desarrollo).
 
-##Tecnologías Utilizadas
+## Tecnologías Utilizadas
 - Kotlin como lenguaje principal.
 - Jetpack Compose para la interfaz de usuario.
 - Coroutines para programación asíncrona.
@@ -18,7 +19,7 @@ Características
 - ViewModel y StateFlow para gestión del estado.
 - json-server para simular el backend local.
 - JUnit para pruebas unitarias.
-Instalación
+## Instalación
 - Clona el repositorio:
 git clone https://github.com/aa-amp/AppAaron_Ampuero.git
 - Abre el proyecto en Android Studio.
@@ -28,7 +29,7 @@ npx json-server --watch db.json --port 3001
 - Ejecuta la app desde Android Studio en la clase MainActivity.
 - Usa el emulador Pixel 9a para probar la comunicación con el backend en la URL:
 http://10.0.2.2:3001/
-Tests
+## Tests
 - Los tests se encuentran en la carpeta:
 com/example/appaaron_ampuero/test
 - Para ver resultados:
