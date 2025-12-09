@@ -1,4 +1,4 @@
-AppAaron_Ampuero
+#AppAaron_Ampuero
 AppAaron_Ampuero es una aplicación Android diseñada para la gestión de un bazar. Permite administrar productos, usuarios y un carrito de compras, integrándose con un backend local que facilita la persistencia y sincronización
 de datos durante el desarrollo. Además, incorpora el consumo de una API externa de clima (Open-Meteo) para mostrar información en la pantalla de inicio.
 Características
