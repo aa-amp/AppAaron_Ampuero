@@ -25,7 +25,7 @@ git clone https://github.com/aa-amp/AppAaron_Ampuero.git
 - Inicia el backend local con:
 npx json-server --watch db.json --port 3001
 - El archivo db.json está en la carpeta raíz del proyecto.
-- Ejecuta la app desde Android Studio (ejemplo: clase MainActivity).
+- Ejecuta la app desde Android Studio en la clase MainActivity.
 - Usa el emulador Pixel 9a para probar la comunicación con el backend en la URL:
 http://10.0.2.2:3001/
 Tests
