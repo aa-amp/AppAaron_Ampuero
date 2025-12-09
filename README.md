@@ -12,14 +12,16 @@ de datos durante el desarrollo. Además, incorpora el consumo de una API externa
 - Interfaz desarrollada con Jetpack Compose.
 - Compatible con emulador Pixel 9a (probado en desarrollo).
 
-## ESTRUCTURA DEL REPOSITORIO
+## Estructura del Repositorio
+Lo mas relevante es: 
 - app/src/main/java/ui/screens/ → Pantallas principales (Home, Login, Registro, Productos).
 - app/src/main/java/viewmodel/ → Lógica de negocio y gestión de estado.
 - app/src/main/java/network/ → Interfaces Retrofit para backend y API externa.
+- app/src/main/java/repository/ → Capa de acceso a datos y comunicación con el backend. 
 - db.json → Base de datos simulada para el backend local.
 - app/src/test/ → Pruebas unitarias con JUnit.
 
-## EJEMPLOS DESTACADOS
+## Ejemplos Destacados
 - Pantalla de inicio con clima: HomeScreen.kt muestra datos de Open-Meteo junto a botones de navegación.
 - Gestión de productos: CRUD completo conectado al backend local (json-server).
 - Carrito de compras: lógica local para agregar y quitar productos.
